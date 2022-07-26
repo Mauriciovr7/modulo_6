@@ -21,7 +21,8 @@ function leer() {
 
 function renombrar() {
   fs.rename('minimarket.txt', 'shopping.txt', function () {
-    const del = setTimeout(eliminar, 2000)
+    //const del = setTimeout(eliminar, 2000) //i
+    setTimeout(eliminar, 2000) // e
     console.log('Archivo renombrado')
   })
 }
