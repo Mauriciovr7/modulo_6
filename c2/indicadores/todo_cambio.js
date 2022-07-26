@@ -6,6 +6,8 @@ const nombre_ext = process.argv[3] //nombre de extension
 const tipo_cambio = process.argv[4] //tipo de cambio
 const cantidad = process.argv[5] // cantidad a transformar
 
+let total
+
 if(nombre_text == undefined ||
   nombre_ext == undefined ||
   tipo_cambio == undefined ||
@@ -22,21 +24,21 @@ async function getDatos(nombre_text, nombre_ext, tipo_cambio, cantidad){
   //const dolarActual = res.data.dolar.valor  
   //const cantidad = 250000
   const tipo_valor = res.data[tipo_cambio].valor
-  console.log(tipo_valor) // 941.03
+  //console.log(tipo_valor) // 941.03
   
   if(tipo_cambio == 'bitcoin'){
-    const resultado = (cantidad*tipo_valor)*res.data.dolar.valor
-    console.log('esto es un bitcoin: ' + resultado)
-  }
+    //const resultado = (cantidad*tipo_valor)*res.data.dolar.valor
+    total = ((cantidad / res.data.dolar.valor)/tipo_valor).toFixed(2)
+  } else {total = (cantidad / tipo_valor).toFixed(2)}
   
-  const total = (cantidad / tipo_valor).toFixed(2)
+  
   //console.log('total' + total)
 
   const frase = `A la fecha: ${hoy} fue realizada cotización con los siguientes
   datos:
-  Cantidad de pesos a convertir: ${cantidad} pesos
+  Cantidad de pesos a convertir: $${cantidad} pesos
   Convertido a ${tipo_cambio} da un total de:
-  $${total}.- `
+  ${total}.-`
 
   function escribir(frase){
     fs.writeFile(`${nombre_text}.${nombre_ext}`, frase,'utf-8', function(){

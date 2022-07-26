@@ -1,5 +1,5 @@
-A la fecha: Tue Jul 26 2022 18:47:34 GMT-0400 (hora estándar de Chile) fue realizada cotización con los siguientes
+A la fecha: Tue Jul 26 2022 19:08:31 GMT-0400 (hora estándar de Chile) fue realizada cotización con los siguientes
   datos:
-  Cantidad de pesos a convertir: 250000 pesos
+  Cantidad de pesos a convertir: $250000 pesos
   Convertido a euro da un total de:
-  $259.88.- 
+  259.88.-

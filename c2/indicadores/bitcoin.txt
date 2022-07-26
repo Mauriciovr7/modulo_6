@@ -1,0 +1,5 @@
+A la fecha: Tue Jul 26 2022 19:42:49 GMT-0400 (hora estándar de Chile) fue realizada cotización con los siguientes
+  datos:
+  Cantidad de pesos a convertir: $23000000 pesos
+  Convertido a bitcoin da un total de:
+  1.09.-
