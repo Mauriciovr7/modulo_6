@@ -24,13 +24,13 @@ app.get('/api', (req, res) => {
     <h2>server caido</h2>
   </html>`)
 })
-
+ */
 app.get('*', (req, res) => { // ruta no existe
   res.send(`
   <html>
     <h2>ruta no existe</h2>
   </html>`)
-}) */
+})
 
 app.listen(5000, function(){
   console.log('ejecutando')
