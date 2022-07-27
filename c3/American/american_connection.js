@@ -15,7 +15,7 @@ app.get('/crear', (req, res) => {
   })
   res.send(`
   <html>
-    <h2>creado ok</h2>
+    <h2>Archivo creado</h2>
     <a class="nav-link" href="/">
       <button class="btn btn-outline-success">Volver</button>
     </a>
@@ -25,10 +25,10 @@ app.get('/crear', (req, res) => {
 
 app.get('/leer', (req, res) => {
 
-  fs.readFile(`${req.query.nombre}.txt`, 'utf-8', function (err, contenido) {
+  fs.readFile(`${req.query.nombre_arch}.txt`, 'utf-8', function (err, contenido) {
     res.send(`
       <html>
-        <h2>leyendo</h2>
+        <h2>Leyendo</h2>
         <h3>${contenido}</h3>
         <a class="nav-link" href="/">
           <button class="btn btn-outline-success">Volver</button>
@@ -41,9 +41,14 @@ app.get('/leer', (req, res) => {
 })
 
 app.get('/renombrar', (req, res) => {
+
+  fs.rename(`${req.query.nombre_anterior}.txt`, `${req.query.nuevo_nombre}.txt`, function () {
+    //setTimeout(()=> { leer()}, 5000)
+  })
+
   res.send(`
   <html>
-    <h2>renombrado</h2>
+    <h2>Archivo renombrado</h2>
     <a class="nav-link" href="/">
       <button class="btn btn-outline-success">Volver</button>
     </a>
@@ -51,6 +56,11 @@ app.get('/renombrar', (req, res) => {
 })
 
 app.get('/eliminar', (req, res) => {
+
+  fs.unlink(`${req.query.arch_eliminar}.txt`, function () {
+    //setTimeout(()=> { leer()}, 5000)
+  })
+
   res.send(`
   <html>
     <h2>eliminado</h2>

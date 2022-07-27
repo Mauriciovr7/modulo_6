@@ -33,8 +33,8 @@
         <h4>Leer un archivo</h4>
         <form action="/leer" method="get">
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre del archivo</label>
-            <input name="nombre" type="text" class="form-control" id="nombre">
+            <label for="nombre_arch" class="form-label">Nombre del archivo</label>
+            <input name="nombre_arch" type="text" class="form-control" id="nombre_arch">
           </div>
           <button type="submit" class="btn btn-info">Consultar archivo</button>
         </form>
@@ -43,12 +43,12 @@
         <h4>Renombrar un archivo</h4>
         <form action="/renombrar" method="get">
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre del archivo</label>
-            <input type="text" class="form-control" id="nombre">
+            <label for="nombre_anterior" class="form-label">Nombre del archivo</label>
+            <input name="nombre_anterior" type="text" class="form-control" id="nombre_anterior">
           </div>
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nuevo nombre del archivo</label>
-            <input type="text" class="form-control" id="nombre">
+            <label for="nuevo_nombre" class="form-label">Nuevo nombre del archivo</label>
+            <input name="nuevo_nombre" type="text" class="form-control" id="nuevo_nombre">
           </div>
           <button type="submit" class="btn btn-warning">Renombrar archivo</button>
         </form>
@@ -57,8 +57,8 @@
         <h4>Eliminar un archivo</h4>
         <form action="/eliminar" method="get">
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre del archivo</label>
-            <input type="text" class="form-control" id="nombre">
+            <label for="arch_eliminar" class="form-label">Nombre del archivo</label>
+            <input name="arch_eliminar" type="text" class="form-control" id="arch_eliminar">
           </div>
           <button type="submit" class="btn btn-danger">Eliminar archivo</button>
         </form>
