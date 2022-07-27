@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs')
 //const axios = require('axios')
 const app = express()
 
@@ -6,6 +7,12 @@ app.use(express.static('public')) // declara una carpeta (static) para guardar l
 // app.get(RUTA, FUNCION_RESPUESTA) // get,post,put,delete
 
 app.get('/crear', (req, res) => {
+  //console.log(req.query)
+  //console.log(req.query.contenido)
+
+  fs.writeFile(`${req.query.nombre}.txt`, req.query.contenido, 'utf-8', function () {
+    //setTimeout(()=> { leer()}, 5000)
+  })
   res.send(`
   <html>
     <h2>creado ok</h2>
@@ -17,13 +24,20 @@ app.get('/crear', (req, res) => {
 
 
 app.get('/leer', (req, res) => {
-  res.send(`
-  <html>
-    <h2>leyendo</h2>
-    <a class="nav-link" href="/">
-      <button class="btn btn-outline-success">Volver</button>
-    </a>
-  </html>`)
+
+  fs.readFile(`${req.query.nombre}.txt`, 'utf-8', function (err, contenido) {
+    res.send(`
+      <html>
+        <h2>leyendo</h2>
+        <h3>${contenido}</h3>
+        <a class="nav-link" href="/">
+          <button class="btn btn-outline-success">Volver</button>
+        </a>
+      </html>
+    `)
+  })
+
+
 })
 
 app.get('/renombrar', (req, res) => {
@@ -56,7 +70,7 @@ app.get('*', (req, res) => { // ruta no existe
   </html>`)
 })
 
-app.listen(5000, function(){
+app.listen(5000, function () {
   console.log('ejecutando')
 })
 
