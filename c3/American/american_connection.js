@@ -7,28 +7,52 @@ app.use(express.static('public')) // declara una carpeta (static) para guardar l
 
 app.get('/crear', (req, res) => {
   res.send(`
-  todo ok`)
-})
-
-
-/* app.get('/', (req, res) => {
-  res.send(`
   <html>
-    <h2>server caido</h2>
+    <h2>creado ok</h2>
+    <a class="nav-link" href="/">
+      <button class="btn btn-outline-success">Volver</button>
+    </a>
   </html>`)
 })
 
-app.get('/api', (req, res) => {
+
+app.get('/leer', (req, res) => {
   res.send(`
   <html>
-    <h2>server caido</h2>
+    <h2>leyendo</h2>
+    <a class="nav-link" href="/">
+      <button class="btn btn-outline-success">Volver</button>
+    </a>
   </html>`)
 })
- */
+
+app.get('/renombrar', (req, res) => {
+  res.send(`
+  <html>
+    <h2>renombrado</h2>
+    <a class="nav-link" href="/">
+      <button class="btn btn-outline-success">Volver</button>
+    </a>
+  </html>`)
+})
+
+app.get('/eliminar', (req, res) => {
+  res.send(`
+  <html>
+    <h2>eliminado</h2>
+    <a class="nav-link" href="/">
+      <button class="btn btn-outline-success">Volver</button>
+    </a>
+  </html>`)
+})
+
 app.get('*', (req, res) => { // ruta no existe
   res.send(`
   <html>
-    <h2>ruta no existe</h2>
+    <h2>...ruta no existe</h2>
+    <a class="nav-link" href="/">
+      <button class="btn btn-outline-success">Volver</button>
+    </a>
   </html>`)
 })
 

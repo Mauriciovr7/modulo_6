@@ -31,17 +31,17 @@
       </div>
       <div class="col">
         <h4>Leer un archivo</h4>
-        <form action="/crear" method="get">
+        <form action="/leer" method="get">
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre del archivo</label>
-            <input type="text" class="form-control" id="nombre">
+            <input name="nombre" type="text" class="form-control" id="nombre">
           </div>
           <button type="submit" class="btn btn-info">Consultar archivo</button>
         </form>
       </div>
       <div class="col">
         <h4>Renombrar un archivo</h4>
-        <form action="/crear" method="get">
+        <form action="/renombrar" method="get">
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre del archivo</label>
             <input type="text" class="form-control" id="nombre">
@@ -55,7 +55,7 @@
       </div>
       <div class="col">
         <h4>Eliminar un archivo</h4>
-        <form action="/crear" method="get">
+        <form action="/eliminar" method="get">
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre del archivo</label>
             <input type="text" class="form-control" id="nombre">
