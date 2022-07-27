@@ -29,3 +29,4 @@ async function getClima(nombre_estacion) {
 }
 
 getClima(nombre_estacion)
+// node clim.js estacion 'Puerto Montt'
