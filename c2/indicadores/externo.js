@@ -12,12 +12,20 @@ const cantidad = process.argv[5] // cantidad a transformar
 if(nombre_text == undefined ||
   nombre_ext == undefined ||
   tipo_indicador == undefined ||
-  cantidad == undefined){
+  !cantidad){ //  == undefined
     console.log('ingresar consulta completa')
-    process.exit(1)
+    process.exit(1) // (1) si terminó con errores
 }
 // sin callbacks
-function ejecutar (consulta) { // universal arch,txt,tipo,cant todo_cambio.js dato txt dolar 2300
+// exec = ejecuta archivo externo (mostrar en console.log)
+child_process.exec(`node todo_cambio.js ${nombre_text} ${nombre_ext} ${tipo_indicador} ${cantidad}`, function(err, datos) { //+' '+arch+'.'+txt+' '+tipo+' '+cant
+  if (err) {
+    return reject(err)
+  }
+  console.log(datos)
+})
+
+/* function ejecutar (consulta) { // universal arch,txt,tipo,cant todo_cambio.js dato txt dolar 2300
   return new Promise ((resolve, reject) => {
     child_process.exec('node '+consulta, function(err, res) { //+' '+arch+'.'+txt+' '+tipo+' '+cant
       if (err) {
@@ -36,6 +44,6 @@ function ejecutar (consulta) { // universal arch,txt,tipo,cant todo_cambio.js da
     })
   }
   leer()
-})() // () para invocar a IIFE
+})() */ // () para invocar a IIFE
 
 // node externo.js dato txt euro 23000000

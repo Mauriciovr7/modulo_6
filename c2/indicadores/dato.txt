@@ -1,5 +1,5 @@
-A la fecha: Tue Jul 26 2022 21:33:45 GMT-0400 (hora estándar de Chile) fue realizada cotización con los siguientes
+A la fecha: Wed Jul 27 2022 09:06:18 GMT-0400 (hora estándar de Chile) fue realizada cotización con los siguientes
   datos:
   Cantidad de pesos a convertir: $23000000 pesos
   Convertido a euro da un total de:
-  23908.52.-
+  24642.95.-

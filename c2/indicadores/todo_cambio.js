@@ -19,9 +19,15 @@ if(nombre_text == undefined ||
 async function getDatos(nombre_text, nombre_ext, tipo_indicador, cantidad){
   console.log('conectando api...')
   // obtener datos de api
-  const res = await axios.get ('https://mindicador.cl/api')
-  const hoy = new Date()
   
+  try {
+    const res = await axios.get ('https://mindicador.cl/api') // error 502 (servidor)
+    const hoy = new Date()
+    
+  } catch (error) {
+    console.log(error)
+    process.exit(1)
+  }
   //const dolarActual = res.data.dolar.valor  
   //const cantidad = 250000
   const tipo_valor = res.data[tipo_indicador].valor
@@ -48,7 +54,7 @@ async function getDatos(nombre_text, nombre_ext, tipo_indicador, cantidad){
   }
   function leer(){
     fs.readFile(`${nombre_text}.${nombre_ext}`, 'utf-8', function(err, contenido){
-      console.log(contenido)       
+      console.log(contenido)  // tipo return     
     })
   }
   //console.log('dolar ', res.data.dolar.valor)
