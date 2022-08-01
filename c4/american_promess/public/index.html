@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>American Conecction</title>
+
+  <style>
+    .deep-purple textarea,
+    h6,
+    label,
+    input {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h5 class="flow-text center">American Connection</h5>
+
+    <div class="row">
+      <!-- <div class="col s3 offset-s4"> -->
+      <div class="col s3">
+        <form id="form-crear" action="/crear" class="card-panel deep-purple darken-1">
+
+          <h6>Crear un archivo</h6>
+          <div class="row">
+            <div class="input-field col s12">
+              <label>Nombre del archivo</label>
+              <!-- <input name="nombre" type="text" class="form-control" id="nombre" required> -->
+              <input id="nombre" type="text" class="validate" required="">
+            </div>
+            <div class="input-field col s12">
+              <label>Contenido</label>
+              <textarea id="contenido" cols="30" rows="10" class="validate" required=""></textarea>
+            </div>
+            <button type="submit" class="waves-effect waves-light btn">Crear archivo</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col s3">
+        <form id="form-leer" action="/leer" class="card-panel deep-purple darken-1">
+
+          <h6>Leer un archivo</h6>
+          <div class="row">
+            <div class="input-field col s12">
+              <label>Nombre del archivo</label>
+              <!-- <input name="nombre" type="text" class="form-control" id="nombre" required> -->
+              <input id="nombre_arch" type="text" class="validate" required="">
+            </div>
+            <button type="submit" class="waves-effect waves-light btn">Consultar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col s3">
+        <form id="form-renombrar" action="/renombrar" class="card-panel deep-purple darken-1">
+
+          <h6>Renombrar un archivo</h6>
+          <div class="row">
+            <div class="input-field col s12">
+              <label>Nombre del archivo</label>
+              <input id="nombre_anterior" type="text" class="validate" required="">
+            </div>
+            <div class="input-field col s12">
+              <label>Nuevo nombre</label>
+              <input id="nuevo_nombre" type="text" class="validate" required="">
+            </div>
+            <button type="submit" class="waves-effect waves-light btn">Renombrar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col s3">
+        <form id="form-eliminar" action="/eliminar" class="card-panel deep-purple darken-1">
+
+          <h6>Eliminar un archivo</h6>
+          <div class="row">
+            <div class="input-field col s12">
+              <label>Nombre del archivo</label>
+              <input id="arch_eliminar" type="text" class="validate" required="">
+            </div>
+            <button type="submit" class="waves-effect waves-light btn">Eliminar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h5 class="contenidoModal"></h5>
+      </div>
+      <div class="modal-footer">
+        <a href="" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+      </div>
+    </div>
+
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+
+    <script>
+      // frontEnd
+      const form_crea = document.querySelector('#form-crear')
+      const nombre_crea = document.querySelector('#nombre')
+      const contenido = document.querySelector('#contenido')
+
+      const form_leer = document.querySelector('#form-leer')
+      const nombre_arch = document.querySelector('#nombre_arch')
+
+      const form_renombrar = document.querySelector('#form-renombrar')
+      const nombre_anterior = document.querySelector('#nombre_anterior')
+      const nuevo_nombre = document.querySelector('#nuevo_nombre')
+
+      const form_eliminar = document.querySelector('#form-eliminar')
+      const arch_eliminar = document.querySelector('#arch_eliminar')
+
+      const contenidoModal = document.querySelector('.contenidoModal')
+      const modal1 = document.getElementById('modal1')
+      const instances = M.Modal.init(modal1)
+
+      // eliminar
+      form_eliminar.addEventListener('submit', async function (e) {
+        e.preventDefault()
+
+        let respuesta = await fetch('/eliminar', {
+          method: 'POST',
+          body: JSON.stringify({
+            arch_eliminar: arch_eliminar.value
+          })
+        })
+
+        respuesta = await respuesta.json()
+        if (respuesta.error ) {
+          inexistente(arch_eliminar.value)
+        } else {
+          contenidoModal.innerHTML = `Tu solicitud para eliminar el archivo:<br>
+        <b> ${arch_eliminar.value}</b> <br> se está procesando...<br>`
+          M.Modal.getInstance(modal1).open()
+
+          setTimeout(() => { mensaje() }, 3000)
+          function mensaje() {
+            M.Modal.getInstance(modal1).close()
+            contenidoModal.innerHTML = ` Archivo <b>${arch_eliminar.value}</b> eliminado exitosamente<br>`
+            M.Modal.getInstance(modal1).open()
+          }
+        }
+      })
+
+      // renombrar
+      form_renombrar.addEventListener('submit', async function (e) {
+        e.preventDefault()
+
+        let respuesta = await fetch('/renombrar', {
+          method: 'POST',
+          body: JSON.stringify({
+            nombre_anterior: nombre_anterior.value,
+            nuevo_nombre: nuevo_nombre.value
+          })
+        })
+
+        respuesta = await respuesta.json()
+        if (respuesta.error) {
+          inexistente(nombre_anterior.value)
+        } else {
+          contenidoModal.innerHTML = `Archivo : <b>${nombre_anterior.value}</b><br> Renombrado a:<br> <b>${nuevo_nombre.value}</b><br>`
+          M.Modal.getInstance(modal1).open()
+        }
+      })
+
+      // leer
+      form_leer.addEventListener('submit', async function (e) {
+        e.preventDefault()
+
+        let respuesta = await fetch('/leer', {
+          method: 'POST', // GET
+          body: JSON.stringify({
+            nombre_arch: nombre_arch.value
+          })
+        })
+
+        respuesta = await respuesta.json()
+        if (respuesta.error) {
+          inexistente(nombre_arch.value)
+        } else {
+          contenidoModal.innerHTML = `Archivo : <b>${nombre_arch.value}</b><br> Contenido:<br> ${respuesta}<br>`
+          M.Modal.getInstance(modal1).open()
+        }
+      })
+
+      // crear getForm
+      form_crea.addEventListener('submit', async function (e) {
+        // 1. Evitamos que se recargue la página
+        e.preventDefault()
+
+        // 2. mandamos la solicitud POST mediante AJAX/fetch ó axios
+        let respuesta = await fetch('/crear', {
+          method: 'POST',
+          body: JSON.stringify({
+            nombre_crea: nombre_crea.value,
+            contenido: contenido.value
+          })
+        })
+
+        respuesta = await respuesta.json() // desempaquetar
+        contenidoModal.innerHTML = `Archivo : <b>${nombre_crea.value}</b><br> Creado exitosamente<br>`
+        M.Modal.getInstance(modal1).open()
+      })
+
+      function inexistente(archivo) {
+        contenidoModal.innerHTML = `Archivo : <b>${archivo}</b><br> No existe<br>`
+        M.Modal.getInstance(modal1).open()
+      }
+
+    </script>
+</body>
+
+</html>

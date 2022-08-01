@@ -17,59 +17,72 @@
       <div class="col">
         <h4>Crear un archivo</h4>
 
+        <!-- <form action="/crear" method="get"> -->
         <form action="/crear" method="get">
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre del archivo</label>
-            <input name="nombre" type="text" class="form-control" id="nombre">
+            <input name="nombre" type="text" class="form-control" id="nombre" required>
           </div>
           <div class="mb-3">
             <label for="contenido" class="form-label">Contenido</label>
-            <textarea name="contenido" class="form-control" id="floatingTextarea"></textarea>
+            <textarea name="contenido" class="form-control" id="contenido" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Crear archivo</button>
         </form>
       </div>
       <div class="col">
+
         <h4>Leer un archivo</h4>
-        <form action="/leer" method="get">
+        <form id="form-leer" action="/leer" method="get">
           <div class="mb-3">
             <label for="nombre_arch" class="form-label">Nombre del archivo</label>
-            <input name="nombre_arch" type="text" class="form-control" id="nombre_arch">
+            <input name="nombre_arch" type="text" class="form-control" id="nombre_arch" required>
           </div>
-          <button type="submit" class="btn btn-info">Consultar archivo</button>
+          <button type="submit" class="btn btn-info">Consultar</button>
         </form>
       </div>
       <div class="col">
+
         <h4>Renombrar un archivo</h4>
-        <form action="/renombrar" method="get">
+        <form id="form-renombrar" action="/renombrar" method="get">
           <div class="mb-3">
             <label for="nombre_anterior" class="form-label">Nombre del archivo</label>
-            <input name="nombre_anterior" type="text" class="form-control" id="nombre_anterior">
+            <input name="nombre_anterior" type="text" class="form-control" id="nombre_anterior" required>
           </div>
           <div class="mb-3">
             <label for="nuevo_nombre" class="form-label">Nuevo nombre del archivo</label>
-            <input name="nuevo_nombre" type="text" class="form-control" id="nuevo_nombre">
+            <input name="nuevo_nombre" type="text" class="form-control" id="nuevo_nombre" required>
           </div>
-          <button type="submit" class="btn btn-warning">Renombrar archivo</button>
+          <button type="submit" class="btn btn-warning">Renombrar</button>
         </form>
       </div>
       <div class="col">
+
         <h4>Eliminar un archivo</h4>
-        <form action="/eliminar" method="get">
+        <form id="form-eliminar" action="/eliminar" method="get">
           <div class="mb-3">
             <label for="arch_eliminar" class="form-label">Nombre del archivo</label>
-            <input name="arch_eliminar" type="text" class="form-control" id="arch_eliminar">
+            <input name="arch_eliminar" type="text" class="form-control" id="arch_eliminar" required>
           </div>
-          <button type="submit" class="btn btn-danger">Eliminar archivo</button>
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+          <!-- <button type="submit" class="btn btn-danger" onclick="abrirDialogo('dialogo1')">Eliminar archivo</button> -->
         </form>
+
+        <!-- <dialog id="dialogo1">
+          Tu solicitud para eliminar el archivo
+          ${req.query.arch_eliminar} se está procesando...</p>
+        
+          <button type="button" onclick="cerrarDialogo('dialogo1')">Cerrar</button>
+        
+        </dialog> -->
       </div>
     </div>
   </div>
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+<!-- no es necesario el cdn para js -->
+<!--   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
 </body>
 
 </html>

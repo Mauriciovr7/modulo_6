@@ -19,9 +19,6 @@ if(nombre_text == undefined ||
 // sin callbacks
 // exec = ejecuta archivo externo (mostrar en console.log)
 child_process.exec(`node todo_cambio.js ${nombre_text} ${nombre_ext} ${tipo_indicador} ${cantidad}`, function(err, datos) { //+' '+arch+'.'+txt+' '+tipo+' '+cant
-  if (err) {
-    return reject(err)
-  }
   console.log(datos)
 })
 
