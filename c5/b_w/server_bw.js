@@ -12,8 +12,10 @@ app.get('/crear', async (req, res) => {
   const imagen = await Jimp.read(req.query.url_image)
 
   imagen.greyscale()
-  .write('public/b_n.jpg')
-  res.redirect('/b_n.jpg')
+  .quality(60) // set JPEG quality
+  .resize(350, 350) // resize
+  .write('public/newImg.jpg')
+  res.redirect('/newImg.jpg')
 })
 
 // inexistente
