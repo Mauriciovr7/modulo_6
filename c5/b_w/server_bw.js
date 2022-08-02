@@ -1,13 +1,9 @@
 // backEnd
 const express = require('express')
 const app = express()
-const Jimp = require('jimp')
+const Jimp = require('jimp') // manipular imagen
 
 app.use(express.static('public'))
-
-app.use(express.static('public'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
 
 const hostname = '127.0.0.1'
 const port = 3000
@@ -34,6 +30,3 @@ app.get('*', (req, res) => { // ruta no existe
 app.listen(3000, function () {
   console.log(`server running http://${hostname}:${port}/`)
 })
-
-
-// nodemon server_bw
