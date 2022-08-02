@@ -1,4 +1,5 @@
 // backEnd
+// metodo POST
 const express = require('express')
 const fs = require('fs').promises
 const app = express()
@@ -29,6 +30,8 @@ function getForm(req) {
  */
 
 // CREAR getForm
+// metodo get , inseguro para enviar datos, yaq se ven en la barra direccion del navegador, poco contenido(2048 caracteres), solo ASCII
+// metodo post, mas seguro, yaq datos se envian por debajo, no estan expuestos, contenido ilimitado, ASCII y binarios
 app.post('/crear', (req, res) => {
 // app.post('/crear', async (req, res) => {
   // const form = await getForm(req) // = reemplaza el json.parse linea 23

@@ -1,4 +1,4 @@
 *.pdf
-*.png
+/vsc
 **/node_modules
 **/eje

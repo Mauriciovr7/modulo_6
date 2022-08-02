@@ -1,3 +1,4 @@
+// backEnd
 // metodo GET
 const express = require('express')
 const fs = require('fs')
@@ -12,6 +13,8 @@ let nombreArchivo
 app.use(express.static('public')) // declara una carpeta (static) para guardar los arch estaticos
 // app.get(RUTA, FUNCION_RESPUESTA) // get,post,put,delete
 
+// metodo get , inseguro para enviar datos, yaq se ven en la barra direccion del navegador, poco contenido(2048 caracteres), solo ASCII
+// metodo post, mas seguro, yaq datos se envian por debajo, no estan expuestos, contenido ilimitado, ASCII y binarios
 app.get('/crear', (req, res) => {
 
   // const info = `${moment().locale('es').format('dd/mm/yyyy')}\n${req.query.contenido}`
