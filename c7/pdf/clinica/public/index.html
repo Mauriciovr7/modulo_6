@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>Clinica</title>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Lista usuarios:</h2>
+    <ul id="usuarios">Lista vacía</ul>
+    <a class="btn btn-primary" href="/new-user">Agregar usuario</a>
+  </div>
+
+  <script>
+    async function getUsuarios() {
+      let datos = await fetch('/users') // traer usuarios de nuestra api
+      datos = await datos.json() // desempaquetar
+      let ul_str = ''
+      
+      for (let user of datos.users) {
+        ul_str += `
+          <li class="list-group-item list-group-item-info w-50">id: ${user.id}</li>
+          <li class="list-group-item list-group-item-info w-50">Nombre: ${user.nombre}</li>
+          <li class="list-group-item list-group-item-info w-50">Email: ${user.email}</li>
+          <li class="list-group-item list-group-item-info w-50">Fecha de registro: ${user.timestamp}</li><br>
+        `
+      }
+      document.querySelector('#usuarios').innerHTML = ul_str
+    }
+
+    getUsuarios()
+
+  </script>
+</body>
+
+</html>

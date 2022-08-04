@@ -22,8 +22,22 @@
       <div>
         <button type="submit">Subir imagen al servidor</button>
       </div>
+      <!-- no se muestran -->
+      <input type="hidden" name="latitude" id="latitude">
+      <input type="hidden" name="longitude" id="longitude">
     </form>
   </div>
+
+  <script>
+    const lat = document.getElementById('latitude')
+    const lon = document.getElementById('longitude')
+
+    navigator.geolocation.getCurrentPosition(pos => { // localización geográfica
+      latitude.value = pos.coords.latitude
+      longitude.value = pos.coords.longitude
+      // console.log(pos.coords)
+    })
+  </script>
 </body>
 
 </html>
